@@ -1,0 +1,25 @@
+class Solution {
+    public int arrayPairSum(int[] nums) {
+        int[] hashTable = new int[20001];
+        int sum = 0;
+        boolean flag = true;
+        for(int i: nums){
+            hashTable[i + 10000]++;
+        }
+        for(int i = 0; i < hashTable.length;){
+            if(hashTable[i] > 0 && flag == true){
+                sum += (i - 10000);
+                hashTable[i]--;
+                flag = false;
+            }
+            else if(hashTable[i] > 0 && flag == false){
+                hashTable[i]--;
+                flag = true;
+            }
+            else{
+                i++;
+            }
+        }
+        return sum;
+    }
+}
