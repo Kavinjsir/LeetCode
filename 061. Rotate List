@@ -8,7 +8,7 @@
  */
 class Solution {
     public ListNode rotateRight(ListNode head, int k) {
-        if(head == null){
+        if(head == null || head.next == null){
             return head;
         }
         
@@ -22,16 +22,13 @@ class Solution {
         ListNode end = p;
         end.next = head;
         len -= k;
-        int i = 1;
         p = head;
-        while(i < len){
+        while(len > 1){
             p = p.next;
-            i++;
+            len--;
         }
-        ListNode q = p.next;
+        end = p.next;
         p.next = null;
-        
-        
-        return q;
+        return end;
     }
 }
