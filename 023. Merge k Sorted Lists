@@ -16,19 +16,13 @@ class Solution {
     
     public ListNode mergeKLists(ListNode[] lists) {
         Queue<ListNode> pairQ = new PriorityQueue<>(1, valComparator);
+        ListNode p = new ListNode(0);
+        ListNode cur = p;
         for(ListNode i : lists){
             if(i != null) {
                 pairQ.add(i);
             }
         }
-        ListNode head = pairQ.poll();
-        ListNode cur = head;
-        if(cur == null){
-            return head;
-        }
-        if(cur.next != null) {
-            pairQ.add(cur.next);
-        } 
         while(!pairQ.isEmpty()){
             cur.next = pairQ.poll();
             cur = cur.next;
@@ -36,6 +30,6 @@ class Solution {
                 pairQ.add(cur.next);
             }
         }
-        return head;
+        return p.next;
     }
 }
